@@ -1,10 +1,6 @@
 const fs = require("fs-extra");
-const { join: route, extname } = require("path");
-/**
- * Return all folders in the directory.
- * @param {string} path - Directory path.
- * @returns {Array<string>}
- */
+const { join: route } = require("path");
+
 function getFolders(path) {
   let list = [];
   for (const content of fs.readdirSync(path, { withFileTypes: true })) {
@@ -15,11 +11,6 @@ function getFolders(path) {
   }
   return list;
 }
-/**
- * Return all files in the directory.
- * @param {string} path - Directory path.
- * @returns {Array<string>}
- */
 
 function getFiles(path) {
   const folderList = getFolders(path);
@@ -33,12 +24,7 @@ function getFiles(path) {
   });
   return list;
 }
-/**
- * Returns all files in the directory with a specific extension.
- * @param {string} path - Directory path.
- * @param {string} extname - Extension to search.
- * @returns {Array<string>}
- */
+
 function getFilesExtname(path, extname) {
   const folderList = getFolders(path);
   let list = [];
