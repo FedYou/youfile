@@ -1,16 +1,10 @@
 # YouFile
 
-<!-- Administra tus archivos y carpetas de forma rápida y simple usando a las librerías `fs-extra`, `mkdir` y `json5` -->
+Manage your files and folders quickly and easily
 
-Manage your files and folders quickly and easily using the `fs-extra`, `mkdir` and `json5` libraries.
+> When doing `write`, `copy`, `move` if the directory does not exist it will be created automatically.
 
-<!-- > [!NOTE]
-> Al hacer `set`, `copy`, `move` si el directorio no existe se completará -->
-
-> [!NOTE]
-> When doing `set`, `copy`, `move` if the directory does not exist it will be completed
-
-## Use
+## Installation
 
 ### Module
 
@@ -24,68 +18,94 @@ import yfile from "youfile";
 const yfile = require("youfile");
 ```
 
-## yfile.set
+## File creation
 
-### Create File
+You can create files with `objects` as well as with `strings`.
+
+With `strings`:
 
 ```js
-yfile.set(src, data);
+yfile.write.file(path, "data");
 ```
 
-<!-- > [!TIP]
-> Si está trabando con `objetos` puedes poner directamente el `objeto` como dato del archivo `json` -->
-
-> [!TIP]
-> If you are working with `objects` you can put the `object` directly as data in the `json` file.
-
-### Create Folder
-
-<!-- Para crear una carpeta solo debes poner `false` en los datos -->
-
-To create a folder you just have to put `false` in the data
+With `objects`:
 
 ```js
-yfile.set(src, false);
+yfile.write.json(path, { data: true });
 ```
 
-## yfile.get
+You can also define the amount of formatting spaces in the json file, default is 0.
 
 ```js
-yfile.get(src);
+yfile.write.json(path, { data: true }, 4);
 ```
 
-<!-- > [!NOTE]
-> Al obtener los datos de un archivo con la extensión `.json` ya será un objeto -->
+## Folder creation
 
-> [!NOTE]
-> When obtaining data from a file with the extension `.json` it will already be an object
-
-## yfile.remove
-
-<!-- Elimina archivos y directorios -->
-
-Deletes files and directories
+If when creating the folder the directory does not exist, it will be created automatically.
 
 ```js
-yfile.remove(src);
+yfile.write.dir(path);
 ```
 
-## yfile.copy
+## Reading files and directories
 
-<!-- Copia archivos y directorios -->
+### Files
 
-Copy files and directories
+Returns the contents of the file in a `string`:
 
 ```js
-yfile.copy(src, dest);
+yfile.read.file(path);
 ```
 
-## yfile.move
-
-<!-- Mueve archivos y directorios -->
-
-Move files and directories
+Returns the contents of the file in an `object`:
 
 ```js
-yfile.move(src, dest);
+yfile.read.json(path);
+```
+
+You can also read files with comments:
+
+```js
+yfile.read.json5(path);
+```
+
+### Directories
+
+Returns an `array` with all the folders contained in the directory:
+
+Returns an `array` with all the folders contained in the directory:
+
+```js
+yfile.read.dir.getFolders(path);
+```
+
+Returns an `array` with all the files contained in the directory:
+
+```js
+yfile.read.dir.getFiles(path);
+```
+
+Returns an `array` with all files with a specified extension contained in the directory:
+
+```js
+yfile.read.dir.getFilesExtname(path, ".ext");
+```
+
+## Deletes files and directories
+
+```js
+yfile.remove(path);
+```
+
+## Copy files and directories
+
+```js
+yfile.copy(path, dest);
+```
+
+## Move files and directories
+
+```js
+yfile.move(path, dest);
 ```
