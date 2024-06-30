@@ -3,6 +3,10 @@ let read = require("./src/read/index");
 let remove = require("./src/remove");
 let copy = require("./src/copy");
 let move = require("./src/move");
+
+/**
+ * Manage your files and folders quickly and easily.
+ */
 module.exports = {
   write: {
     dir: require("./src/write/dir"),
