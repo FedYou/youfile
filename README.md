@@ -72,24 +72,40 @@ yfile.read.json5(path);
 
 ### Directories
 
-Returns an `array` with all the folders contained in the directory:
-
-Returns an `array` with all the folders contained in the directory:
+Returns an `array` with all folders that are in the same directory:
 
 ```js
 yfile.read.dir.getFolders(path);
 ```
 
-Returns an `array` with all the files contained in the directory:
+Returns an `array` with all the files that are in the same directory:
 
 ```js
 yfile.read.dir.getFiles(path);
 ```
 
+Returns an `array` with all the files with a specified extension that are in the same directory:
+
+```js
+yfile.read.dir.getExtnameFiles(path, ".ext");
+```
+
+Returns an `array` with all the folders contained in the directory:
+
+```js
+yfile.read.dir.getAllFolders(path);
+```
+
+Returns an `array` with all the files contained in the directory:
+
+```js
+yfile.read.dir.getAllFiles(path);
+```
+
 Returns an `array` with all files with a specified extension contained in the directory:
 
 ```js
-yfile.read.dir.getFilesExtname(path, ".ext");
+yfile.read.dir.getAllExtnameFiles(path, ".ext");
 ```
 
 ## Deletes files and directories
