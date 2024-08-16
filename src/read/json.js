@@ -6,5 +6,9 @@ const file = require("./file");
  * @returns {object}
  */
 module.exports = (path) => {
-  return JSON.parse(file(path));
+  let content = file(path);
+  if (content.charCodeAt(0) === 0xfeff) {
+    content = content.slice(1);
+  }
+  return JSON.parse(content);
 };

@@ -6,12 +6,22 @@ const regex = /("([^"\\]|\\.)*"|'([^'\\]|\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/g;
  * @returns {object}
  */
 module.exports = (path) => {
-  return JSON.parse(
-    file(path).replace(regex, (match) => {
-      if (match.startsWith('"') || match.startsWith("'")) {
-        return match;
-      }
-      return "";
-    })
-  );
+  try {
+    let content = file(path);
+    if (content.charCodeAt(0) === 0xfeff) {
+      content = content.slice(1);
+    }
+
+    return JSON.parse(
+      content.replace(regex, (match) => {
+        if (match.startsWith('"') || match.startsWith("'")) {
+          return match;
+        }
+        return "";
+      })
+    );
+  } catch (error) {
+    console.log(path);
+    console.log(error);
+  }
 };
