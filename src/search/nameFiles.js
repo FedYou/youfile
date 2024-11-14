@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const { join } = require("path");
 /**
  * Return all files that are in the same directory with a specified name.
- * @param {string} path - Directory path.
+ * @param {string} dirPath - Directory path.
  * @param {string} name - Name to search.
  * @returns {Array<string>}
  */

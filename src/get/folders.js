@@ -2,7 +2,7 @@ const fs = require("fs-extra");
 const { join } = require("path");
 /**
  * Returns all folders that are in the same directory.
- * @param {string} path - Directory path.
+ * @param {string} dirPath - Directory path.
  * @returns {Array<string>}
  */
 module.exports = (dirPath) => {
