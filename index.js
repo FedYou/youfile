@@ -1,23 +1,17 @@
 const get = require("./src/get");
 const search = require("./src/search");
-let remove = require("./src/remove");
-let copy = require("./src/copy");
-let move = require("./src/move");
+const write = require("./src/write");
+const read = require("./src/read");
+const remove = require("./src/remove");
+const copy = require("./src/copy");
+const move = require("./src/move");
 
 /**
  * Manage your files and folders quickly and easily.
  */
 module.exports = {
-  write: {
-    dir: require("./src/write/dir"),
-    file: require("./src/write/file"),
-    json: require("./src/write/json"),
-  },
-  read: {
-    file: require("./src/read/file"),
-    json: require("./src/read/json"),
-    json5: require("./src/read/json5"),
-  },
+  write,
+  read,
   get,
   search,
   remove,
