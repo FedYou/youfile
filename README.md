@@ -9,119 +9,181 @@ Manage your files and folders quickly and easily
 ### Module
 
 ```js
-import yfile from "youfile";
+import youfile from "youfile";
 ```
 
 ### Commonjs
 
 ```js
-const yfile = require("youfile");
+const youfile = require("youfile");
 ```
 
-## File creation
+## write
+
+### file
 
 You can create files with `objects` as well as with `strings`.
 
 With `strings`:
 
 ```js
-yfile.write.file(path, "data");
+youfile.write.file(path, "data");
 ```
 
 With `objects`:
 
 ```js
-yfile.write.json(path, { data: true });
+youfile.write.json(path, { data: true });
 ```
 
 You can also define the amount of formatting spaces in the json file, default is 0.
 
 ```js
-yfile.write.json(path, { data: true }, 4);
+youfile.write.json(path, { data: true }, 4);
 ```
 
-## Folder creation
+### dir
 
-If when creating the folder the directory does not exist, it will be created automatically.
+> If when creating the folder the directory does not exist, it will be created automatically.
 
 ```js
-yfile.write.dir(path);
+youfile.write.dir(path);
 ```
 
-## Reading files and directories
-
-### Files
+## Read
 
 Returns the contents of the file in a `string`:
 
 ```js
-yfile.read.file(path);
+youfile.read.file(path);
 ```
 
 Returns the contents of the file in an `object`:
 
 ```js
-yfile.read.json(path);
+youfile.read.json(path);
 ```
 
 You can also read files with comments:
 
 ```js
-yfile.read.json5(path);
+youfile.read.json5(path);
 ```
 
-### Directories
+## Get
 
-Returns an `array` with all folders that are in the same directory:
+### sha256
+
+Returns a `promise` with the file's SHA-256 hash as a `string`
 
 ```js
-yfile.read.dir.getFolders(path);
+youfile.get.sha256(path);
 ```
 
-Returns an `array` with all the files that are in the same directory:
+### folders
+
+Returns an `array` of all folders in the same directory
 
 ```js
-yfile.read.dir.getFiles(path);
+youfile.get.folders(path);
 ```
 
-Returns an `array` with all the files with a specified extension that are in the same directory:
+### files
+
+Returns an `array` of all files in the same directory
 
 ```js
-yfile.read.dir.getExtnameFiles(path, ".ext");
+youfile.get.files(path);
 ```
 
-Returns an `array` with all the folders contained in the directory:
+### allFolders
+
+Returns an `array` of all folders within the directory
 
 ```js
-yfile.read.dir.getAllFolders(path);
+youfile.get.allFolders(path);
 ```
 
-Returns an `array` with all the files contained in the directory:
+### allFiles
+
+Returns an `array` of all files within the directory
 
 ```js
-yfile.read.dir.getAllFiles(path);
+youfile.get.allFiles(path);
 ```
 
-Returns an `array` with all files with a specified extension contained in the directory:
+## Search
+
+### extnameFiles
+
+Returns an `array` of all files with a specific extension in the same directory:
 
 ```js
-yfile.read.dir.getAllExtnameFiles(path, ".ext");
+youfile.search.extnameFiles(path, ".ext");
 ```
 
-## Deletes files and directories
+### nameFiles
+
+Returns an `array` of all files with a specific name in the same directory
 
 ```js
-yfile.remove(path);
+youfile.search.nameFiles(path, "text.txt");
 ```
 
-## Copy files and directories
+### allExtnameFiles
+
+Returns an `array` of all files with a specific extension in the directory
 
 ```js
-yfile.copy(path, dest);
+youfile.search.allExtnameFiles(path, ".ext");
 ```
 
-## Move files and directories
+### allNameFiles
+
+Returns an `array` of all files with a specific name in the directory
 
 ```js
-yfile.move(path, dest);
+youfile.search.allNameFiles(path, "text.txt");
+```
+
+## Other Functions
+
+### exists
+
+Returns a `boolean` indicating whether the file or directory exists
+
+```js
+youfile.exists(path);
+```
+
+### remove
+
+Deletes files and directories
+
+```js
+youfile.remove(path);
+```
+
+### removeExists
+
+Deletes files and directories if they exist
+
+```js
+youfile.removeExists(path);
+```
+
+### copy
+
+Copies files and directories
+
+```js
+youfile.copy(path, dest);
+```
+
+### move
+
+Moves files or directories
+
+```js
+youfile.move(path, dest);
 ```

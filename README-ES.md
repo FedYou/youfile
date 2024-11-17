@@ -9,119 +9,181 @@ Gestiona tus archivos y carpetas de forma rápida y sencilla.
 ### Module
 
 ```js
-import yfile from "youfile";
+import youfile from "youfile";
 ```
 
 ### Commonjs
 
 ```js
-const yfile = require("youfile");
+const youfile = require("youfile");
 ```
 
-## Creación de archivos
+## write
+
+### file
 
 Puedes crear archivos con `objects` como tambien con `strings`
 
 Con `strings`:
 
 ```js
-yfile.write.file(path, "data");
+youfile.write.file(path, "data");
 ```
 
 Con `objects`:
 
 ```js
-yfile.write.json(path, { data: true });
+youfile.write.json(path, { data: true });
 ```
 
 Puedes tambien definir la cantidad de espacios de formateo del archivo json, por defecto es 0.
 
 ```js
-yfile.write.json(path, { data: true }, 4);
+youfile.write.json(path, { data: true }, 4);
 ```
 
-## Creación de carpetas
+### dir
 
-Si al crear la carpeta el directorio no existe se creara automaticamente.
+> Si al crear la carpeta el directorio no existe se creara automaticamente.
 
 ```js
-yfile.write.dir(path);
+youfile.write.dir(path);
 ```
 
-## Lectura de archivos y directorios
-
-### Archivos
+## Read
 
 Retorna el contenido del archivo en un `string`:
 
 ```js
-yfile.read.file(path);
+youfile.read.file(path);
 ```
 
 Retorna el contenido del archivo en un `objeto`:
 
 ```js
-yfile.read.json(path);
+youfile.read.json(path);
 ```
 
 Tambien puedes leer archivos con comentarios:
 
 ```js
-yfile.read.json5(path);
+youfile.read.json5(path);
 ```
 
-### Directorios
+## Get
 
-Retorna un `array` con todas las carpetas que estan en el mismo directorio:
+### sha256
+
+Retorna un `promise` con en sha256 del archivo en un `string`
 
 ```js
-yfile.read.dir.getFolders(path);
+youfile.get.sha256(path);
 ```
 
-Retorna un `array` con todos los archivos que estan en el mismo directorio:
+### folders
+
+Retorna un `array` con todas las carpetas que estan en el mismo directorio
 
 ```js
-yfile.read.dir.getFiles(path);
+youfile.get.folders(path);
 ```
 
-Retorna un `array` con todos los archivos con una extension especifica que estan en el mismo directorio:
+### files
+
+Retorna un `array` con todos los archivos que estan en el mismo directorio
 
 ```js
-yfile.read.dir.getExtnameFiles(path, ".ext");
+youfile.get.files(path);
 ```
 
-Retorna un `array` con todas las carpetas que contiene el directorio:
+### allFolders
+
+Retorna un `array` con todas las carpetas que contiene el directorio
 
 ```js
-yfile.read.dir.getAllFolders(path);
+youfile.get.allFolders(path);
 ```
 
-Retorna un `array` con todos los archivos que contiene el directorio:
+### allFiles
+
+Retorna un `array` con todos los archivos que contiene el directorio
 
 ```js
-yfile.read.dir.getAllFiles(path);
+youfile.get.allFiles(path);
 ```
 
-Retorna un `array` con todos los archivos con una extension especifica que contiene el directorio:
+## Search
+
+### extnameFiles
+
+Retorna un `array` con todos los archivos con una extension especifica que estan en el mismo directorio
 
 ```js
-yfile.read.dir.getAllExtnameFiles(path, ".ext");
+youfile.search.extnameFiles(path, ".ext");
 ```
 
-## Elimina archivos y directorios
+### nameFiles
+
+Retorna un `array` con todos los archivos con un nombre especifico que estan en el mismo directorio
 
 ```js
-yfile.remove(path);
+youfile.search.nameFiles(path, "text.txt");
 ```
 
-## Copia archivos y directorios
+### allExtnameFiles
+
+Retorna un `array` con todos los archivos con una extension especifica que contiene el directorio
 
 ```js
-yfile.copy(path, dest);
+youfile.search.allExtnameFiles(path, ".ext");
 ```
 
-## Mueve archivos y directorios
+### allNameFiles
+
+Retorna un `array` con todos los archivos con un nombre especifico que contiene el directorio
 
 ```js
-yfile.move(path, dest);
+youfile.search.allNameFiles(path, "text.txt");
+```
+
+## Otras funciones
+
+### exists
+
+Retorna un `boolean` si el archivo o directorio existe
+
+```js
+youfile.exists(path);
+```
+
+### remove
+
+Elimina archivos y directorios
+
+```js
+youfile.remove(path);
+```
+
+### removeExists
+
+Elimina archivos y directorios si existen
+
+```js
+youfile.removeExists(path);
+```
+
+### copy
+
+Copia archivos y directorios
+
+```js
+youfile.copy(path, dest);
+```
+
+### move
+
+Muevo archivos o directorios
+
+```js
+youfile.move(path, dest);
 ```
