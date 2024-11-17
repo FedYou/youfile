@@ -5,8 +5,6 @@ let fs = require("fs-extra");
  * @param {string} path - Directory or file path.
  * @param {string} dest - Destination path of the directory or file.
  */
-function remove(path) {
+module.exports = (path) => {
   fs.removeSync(path);
-}
-
-module.exports = remove;
+};

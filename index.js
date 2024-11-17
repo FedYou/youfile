@@ -3,6 +3,7 @@ const search = require("./src/search");
 const write = require("./src/write");
 const read = require("./src/read");
 const remove = require("./src/remove");
+const removeExists = require("./src/removeExists");
 const copy = require("./src/copy");
 const move = require("./src/move");
 
@@ -15,6 +16,7 @@ module.exports = {
   get,
   search,
   remove,
+  removeExists,
   copy,
   move,
 };
