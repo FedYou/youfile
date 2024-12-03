@@ -1,4 +1,4 @@
-const fs = require("fs-extra");
+const fs = require('fs-extra')
 
 /**
  * Returns the contents of the file as a string.
@@ -6,5 +6,5 @@ const fs = require("fs-extra");
  * @returns {string}
  */
 module.exports = (path) => {
-  return fs.readFileSync(path, "utf8");
-};
+  return fs.readFileSync(path, 'utf8')
+}

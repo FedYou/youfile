@@ -1,5 +1,5 @@
-const fs = require("fs-extra");
-const { join } = require("path");
+const fs = require('fs-extra')
+const { join } = require('path')
 /**
  * Return all files that are in the same directory with a specified extension.
  * @param {string} dirPath - Directory path.
@@ -7,11 +7,11 @@ const { join } = require("path");
  * @returns {Array<string>}
  */
 module.exports = (dirPath, extname) => {
-  let list = [];
+  const list = []
   for (const content of fs.readdirSync(dirPath, { withFileTypes: true })) {
     if (content.isFile() && content.name.endsWith(extname)) {
-      list.push(join(dirPath, content.name));
+      list.push(join(dirPath, content.name))
     }
   }
-  return list;
-};
+  return list
+}

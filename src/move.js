@@ -1,6 +1,6 @@
-let fs = require("fs-extra");
-let toDir = require("./todir");
-let md = require("mkdir");
+const fs = require('fs-extra')
+const toDir = require('./todir')
+const md = require('mkdir')
 
 /**
  * Move files and directories.
@@ -8,6 +8,6 @@ let md = require("mkdir");
  * @param {string} dest - Destination path of the directory or file.
  */
 module.exports = (path, dest) => {
-  md.mkdirsSync(toDir(dest));
-  fs.moveSync(path, dest);
-};
+  md.mkdirsSync(toDir(dest))
+  fs.moveSync(path, dest)
+}

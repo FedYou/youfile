@@ -1,5 +1,5 @@
-const get = require("../get");
-const extnameFiles = require("./extnameFiles");
+const get = require('../get')
+const extnameFiles = require('./extnameFiles')
 /**
  * Returns all files in the directory with a specific extension.
  * @param {string} dirPath - Directory path.
@@ -7,12 +7,12 @@ const extnameFiles = require("./extnameFiles");
  * @returns {Array<string>}
  */
 module.exports = (dirPath, extname) => {
-  const folderList = get.allFolders(dirPath);
-  let list = [];
-  list.push(...extnameFiles(dirPath, extname));
+  const folderList = get.allFolders(dirPath)
+  const list = []
+  list.push(...extnameFiles(dirPath, extname))
 
   folderList.forEach((folderPath) => {
-    list.push(...extnameFiles(folderPath, extname));
-  });
-  return list;
-};
+    list.push(...extnameFiles(folderPath, extname))
+  })
+  return list
+}

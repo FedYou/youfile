@@ -1,4 +1,4 @@
-const file = require("./file");
+const file = require('./file')
 
 /**
  * Returns the contents of the file as a object.
@@ -6,5 +6,5 @@ const file = require("./file");
  * @returns {object}
  */
 module.exports = (path) => {
-  return JSON.parse(file(path));
-};
+  return JSON.parse(file(path))
+}

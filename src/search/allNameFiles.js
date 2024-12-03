@@ -1,5 +1,5 @@
-const get = require("../get");
-const nameFiles = require("./nameFiles");
+const get = require('../get')
+const nameFiles = require('./nameFiles')
 /**
  * Returns all files in the directory with a specific name.
  * @param {string} dirPath - Directory path.
@@ -7,12 +7,12 @@ const nameFiles = require("./nameFiles");
  * @returns {Array<string>}
  */
 module.exports = (dirPath, name) => {
-  const folderList = get.allFolders(dirPath);
-  let list = [];
-  list.push(...nameFiles(dirPath, name));
+  const folderList = get.allFolders(dirPath)
+  const list = []
+  list.push(...nameFiles(dirPath, name))
 
   folderList.forEach((folderPath) => {
-    list.push(...nameFiles(folderPath, name));
-  });
-  return list;
-};
+    list.push(...nameFiles(folderPath, name))
+  })
+  return list
+}
