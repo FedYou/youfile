@@ -1,9 +1,9 @@
-const fs = require('fs').promises
+const fs = require('fs')
 const path = require('path')
 
-module.exports = async function (dirname) {
+module.exports = function (dirname) {
   const list = []
-  for (const content of await fs.readdir(dirname, { withFileTypes: true })) {
+  for (const content of fs.readdirSync(dirname, { withFileTypes: true })) {
     if (content.isDirectory()) {
       list.push(path.join(dirname, content.name))
     }

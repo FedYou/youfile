@@ -1,16 +1,13 @@
-const fs = require('fs-extra')
-const { join } = require('path')
-/**
- * Return all folders in the directory.
- * @param {string} dirPath - Directory path.
- * @returns {Array<string>}
- */
-module.exports = function get (dirPath) {
+const fs = require('fs').promises
+const path = require('path')
+
+module.exports = async function get (dirname) {
   const list = []
-  for (const content of fs.readdirSync(dirPath, { withFileTypes: true })) {
+  for (const content of await fs.readdir(dirname, { withFileTypes: true })) {
     if (content.isDirectory()) {
-      list.push(join(dirPath, content.name))
-      list.push(...get(join(dirPath, content.name)))
+      const pathFolder = path.join(dirname, content.name)
+      list.push(pathFolder)
+      list.push(...(await get(pathFolder)))
     }
   }
   return list

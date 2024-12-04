@@ -1,17 +1,14 @@
 const allFolders = require('./allFolders')
 const files = require('./files')
-/**
- * Return all files in the directory.
- * @param {string} dirPath - Directory path.
- * @returns {Array<string>}
- */
-module.exports = (dirPath) => {
+
+module.exports = async function (dirname) {
   const list = []
 
-  list.push(...files(dirPath))
+  list.push(...(await files(dirname)))
 
-  allFolders(dirPath).forEach((folderPath) => {
-    list.push(...files(folderPath))
-  })
+  for (const folderPath of await allFolders(dirname)) {
+    list.push(...(await files(folderPath)))
+  }
+
   return list
 }

@@ -1,5 +1,4 @@
 const get = require('./src/get')
-const search = require('./src/search')
 const write = require('./src/write')
 const read = require('./src/read')
 const remove = require('./src/remove')
@@ -15,7 +14,6 @@ module.exports = {
   write,
   read,
   get,
-  search,
   remove,
   removeExists,
   exists,
