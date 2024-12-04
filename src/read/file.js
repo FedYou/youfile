@@ -1,10 +1,8 @@
-const fs = require('fs-extra')
+const fs = require('fs').promises
 
-/**
- * Returns the contents of the file as a string.
- * @param {string} path - File path.
- * @returns {string}
- */
-module.exports = (path) => {
-  return fs.readFileSync(path, 'utf8')
+module.exports = async function (pathFile, encoding) {
+  if (typeof encoding === 'string') {
+    return await fs.readFile(pathFile, encoding)
+  }
+  return await fs.readFile(pathFile)
 }

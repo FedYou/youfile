@@ -1,14 +1,14 @@
-const file = require('./file')
+const fileSync = require('./fileSync')
 const regex = /("([^"\\]|\\.)*"|'([^'\\]|\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/g
 
-module.exports = async function (filePath) {
+module.exports = function (filePath) {
   try {
-    let content = await file(filePath)
+    let content = fileSync(filePath)
     if (content.charCodeAt(0) === 0xfeff) {
       content = content.slice(1)
     }
 
-    return await JSON.parse(
+    return JSON.parse(
       content.replace(regex, (match) => {
         if (match.startsWith('"') || match.startsWith("'")) {
           return match
