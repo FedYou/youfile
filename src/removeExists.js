@@ -1,10 +1,7 @@
-const fs = require('fs-extra')
+const exists = require('./exists')
+const remove = require('./remove')
 
-/**
- * Deletes files and directories if they exist.
- * @param {string} path - Directory or file path.
- */
-module.exports = (path) => {
-  if (!fs.existsSync(path)) return
-  fs.removeSync(path)
+module.exports = async function (path) {
+  if (!(await exists(path))) return
+  await remove(path)
 }

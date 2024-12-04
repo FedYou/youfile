@@ -1,9 +1,5 @@
-const fs = require('fs-extra')
+const fs = require('fs').promises
 
-/**
- * Deletes files and directories.
- * @param {string} path - Directory or file path.
- */
-module.exports = (path) => {
-  fs.removeSync(path)
+module.exports = async function (path) {
+  await fs.rm(path, { recursive: true, force: true })
 }
