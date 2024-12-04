@@ -1,13 +1,8 @@
-const fs = require('fs-extra')
-const toDir = require('./todir')
-const md = require('mkdir')
+const fs = require('fs').promises
+const path = require('path')
+const dir = require('./write/dir')
 
-/**
- * Move files and directories.
- * @param {string} path - Directory or file path.
- * @param {string} dest - Destination path of the directory or file.
- */
-module.exports = (path, dest) => {
-  md.mkdirsSync(toDir(dest))
-  fs.moveSync(path, dest)
+module.exports = async function (pathName, dest) {
+  await dir(path.dirname(dest))
+  await fs.rename(pathName, dest)
 }

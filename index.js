@@ -8,7 +8,9 @@ const removeExistsSync = require('./src/removeExistsSync')
 const exists = require('./src/exists')
 const existsSync = require('./src/existsSync')
 const copy = require('./src/copy')
+const copySync = require('./src/copySync')
 const move = require('./src/move')
+const moveSync = require('./src/moveSync')
 
 /**
  * Manage your files and folders quickly and easily.
@@ -24,5 +26,7 @@ module.exports = {
   exists,
   existsSync,
   copy,
-  move
+  copySync,
+  move,
+  moveSync
 }
