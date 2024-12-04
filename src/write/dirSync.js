@@ -1,7 +1,7 @@
-const fs = require('fs').promises
+const fs = require('fs')
 const path = require('path')
 
-module.exports = async function (dirname) {
+module.exports = function (dirname) {
   const mode = 0o777 ^ process.umask()
 
   let current = dirname
@@ -9,7 +9,7 @@ module.exports = async function (dirname) {
   const paths = []
   while (!0) {
     try {
-      const stat = await fs.stat(current)
+      const stat = fs.statSync(current)
       if (stat.isDirectory()) break
     } catch (error) {
       if (error.code === 'ENOENT') {
@@ -20,6 +20,6 @@ module.exports = async function (dirname) {
   }
 
   for (const dir of paths.reverse()) {
-    await fs.mkdir(dir, { mode })
+    fs.mkdirSync(dir, { mode })
   }
 }

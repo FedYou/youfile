@@ -1,13 +1,14 @@
-const fs = require('fs-extra')
-const md = require('mkdir')
-const toDir = require('../todir')
+const fs = require('fs').promises
+const path = require('path')
+const dir = require('./dir')
 
-/**
- * Create a file.
- * @param {string} path - File path.
- * @param {string} data - File contents.
- */
-module.exports = (path, data = '') => {
-  md.mkdirsSync(toDir(path))
-  fs.writeFileSync(path, data, 'utf8')
+module.exports = async function (filePath, data = '', encoding) {
+  await dir(path.dirname(filePath))
+
+  if (typeof encoding === 'string') {
+    await fs.writeFile(filePath, data, encoding)
+    return
+  }
+
+  await fs.writeFile(filePath, data)
 }

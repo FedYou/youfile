@@ -1,6 +1,6 @@
-const file = require('./file')
+const fileSync = require('./fileSync')
 
-module.exports = async function (filePath, data = {}, spaces = 0) {
+module.exports = function (filePath, data = {}, spaces = 0) {
   if (typeof spaces !== 'number') {
     throw new Error('The spaces not is number type')
   }
@@ -8,5 +8,5 @@ module.exports = async function (filePath, data = {}, spaces = 0) {
     throw new Error('The data not is object type')
   }
 
-  await file(filePath, JSON.stringify(data, null, spaces), 'utf-8')
+  fileSync(filePath, JSON.stringify(data, null, spaces), 'utf-8')
 }
