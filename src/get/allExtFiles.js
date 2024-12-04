@@ -6,7 +6,7 @@ module.exports = async function (dirname, extname) {
   list.push(...(await extFiles(dirname, extname)))
 
   for (const folderPath of await allFolders(dirname)) {
-    list.push(...(await extFiles(folderPath)))
+    list.push(...(await extFiles(folderPath, extname)))
   }
 
   return list
