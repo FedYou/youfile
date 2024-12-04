@@ -4,6 +4,7 @@ const read = require('./src/read')
 const remove = require('./src/remove')
 const removeExists = require('./src/removeExists')
 const exists = require('./src/exists')
+const existsSync = require('./src/existsSync')
 const copy = require('./src/copy')
 const move = require('./src/move')
 
@@ -17,6 +18,7 @@ module.exports = {
   remove,
   removeExists,
   exists,
+  existsSync,
   copy,
   move
 }

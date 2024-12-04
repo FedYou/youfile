@@ -1,10 +1,9 @@
-const fs = require('fs-extra')
+const fs = require('fs').promises
 
-/**
- * Checks if a file or directory exists.
- * @param {string} path - Directory or file path.
- * @returns {boolean} True if the file or directory exists, false otherwise.
- */
 module.exports = (path) => {
-  return fs.existsSync(path)
+  return new Promise((resolve, reject) => {
+    fs.access(path)
+      .then(() => resolve(true))
+      .catch(() => resolve(false))
+  })
 }
