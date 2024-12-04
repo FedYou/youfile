@@ -18,9 +18,5 @@
     "fedyou"
   ],
   "author": "FedYou",
-  "license": "MIT",
-  "dependencies": {
-    "fs-extra": "^11.2.0",
-    "mkdir": "^0.0.2"
-  }
+  "license": "MIT"
 }
