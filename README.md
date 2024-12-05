@@ -1,189 +1,173 @@
 # YouFile
 
-Manage your files and folders quickly and easily
+Manage your files and folders quickly and easily.
 
 > When doing `write`, `copy`, `move` if the directory does not exist it will be created automatically.
+
+> All functions have their own version promises as well as synchronization.
 
 ## Installation
 
 ### Module
 
 ```js
-import youfile from "youfile";
+import youfile from 'youfile'
 ```
 
 ### Commonjs
 
 ```js
-const youfile = require("youfile");
+const youfile = require('youfile')
 ```
 
 ## write
 
 ### file
 
-You can create files with `objects` as well as with `strings`.
-
-With `strings`:
+You can create files with `objects` as well as with other data such as `fs.writeFile`.
 
 ```js
-youfile.write.file(path, "data");
+youfile.write.file(path, 'data')
+youfile.write.file(path, 'data', 'utf-8') // You can also add the encoding of the file in the format that will be created, (this is optional)
 ```
 
 With `objects`:
 
 ```js
-youfile.write.json(path, { data: true });
+youfile.write.json(path, { data: true })
 ```
 
-You can also define the amount of formatting spaces in the json file, default is 0.
+You can also define the amount of formatting spaces of the JSON file, default is 0.
 
 ```js
-youfile.write.json(path, { data: true }, 4);
+youfile.write.json(path, { data: true }, 4)
 ```
 
 ### dir
 
-> If when creating the folder the directory does not exist, it will be created automatically.
+> If when creating the folder the directory does not exist it will be created automatically.
 
 ```js
-youfile.write.dir(path);
+youfile.write.dir(path)
 ```
 
 ## Read
 
-Returns the contents of the file in a `string`:
+Returns the contents of the file as an `fs.readFile` :
 
 ```js
-youfile.read.file(path);
+youfile.read.file(path)
+youfile.read.file(path, 'utf-8') // You can also add the encoding of the file in the format it will retranslate, (this is optional)
 ```
 
 Returns the contents of the file in an `object`:
 
 ```js
-youfile.read.json(path);
+youfile.read.json(path)
 ```
 
-You can also read files with comments:
+You can also read JSON files with comments:
 
 ```js
-youfile.read.json5(path);
+youfile.read.json5(path)
 ```
 
 ## Get
 
 ### sha256
 
-Returns a `promise` with the file's SHA-256 hash as a `string`
+Returns the sha256 of the file in a `string`.
 
 ```js
-youfile.get.sha256(path);
+youfile.get.sha256(path)
 ```
 
 ### folders
 
-Returns an `array` of all folders in the same directory
+Return an `array` with all folders that are in the same directory.
 
 ```js
-youfile.get.folders(path);
+youfile.get.folders(path)
 ```
 
 ### files
 
-Returns an `array` of all files in the same directory
+Return an `array` with all the files that are in the same directory.
 
 ```js
-youfile.get.files(path);
+youfile.get.files(path)
+```
+
+### extFiles
+
+Returns an `array` with all the files with a specified extension that are in the same directory
+
+```js
+youfile.get.extFiles(path, '.ext')
 ```
 
 ### allFolders
 
-Returns an `array` of all folders within the directory
+Returns an `array` with all folders contained in the directory
 
 ```js
-youfile.get.allFolders(path);
+youfile.get.allFolders(path)
 ```
 
 ### allFiles
 
-Returns an `array` of all files within the directory
+Returns an `array` with all the files contained in the a directory.
 
 ```js
-youfile.get.allFiles(path);
+youfile.get.allFiles(path)
 ```
 
-## Search
+### allExtFiles
 
-### extnameFiles
-
-Returns an `array` of all files with a specific extension in the same directory:
+Returns an `array` with all the files with a specified extension contained in the directory
 
 ```js
-youfile.search.extnameFiles(path, ".ext");
+youfile.get.allExtFiles(path, '.ext')
 ```
 
-### nameFiles
-
-Returns an `array` of all files with a specific name in the same directory
-
-```js
-youfile.search.nameFiles(path, "text.txt");
-```
-
-### allExtnameFiles
-
-Returns an `array` of all files with a specific extension in the directory
-
-```js
-youfile.search.allExtnameFiles(path, ".ext");
-```
-
-### allNameFiles
-
-Returns an `array` of all files with a specific name in the directory
-
-```js
-youfile.search.allNameFiles(path, "text.txt");
-```
-
-## Other Functions
+## Other functions
 
 ### exists
 
-Returns a `boolean` indicating whether the file or directory exists
+Returns a `boolean` if the file or directory exists
 
 ```js
-youfile.exists(path);
+youfile.exists(path)
 ```
 
 ### remove
 
-Deletes files and directories
+Removes files and directories
 
 ```js
-youfile.remove(path);
+youfile.remove(path)
 ```
 
 ### removeExists
 
-Deletes files and directories if they exist
+Remove files and directories if they exist
 
 ```js
-youfile.removeExists(path);
+youfile.removeExists(path)
 ```
 
 ### copy
 
-Copies files and directories
+Copy files and directories
 
 ```js
-youfile.copy(path, dest);
+youfile.copy(path, dest)
 ```
 
 ### move
 
-Moves files or directories
+I move files or directories
 
 ```js
-youfile.move(path, dest);
+youfile.move(path, dest)
 ```
