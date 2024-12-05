@@ -4,6 +4,7 @@
   "description": "Manage your files and folders quickly and easily",
   "homepage": "https://github.com/FedYou/youfile",
   "main": "index.js",
+  "types": "index.d.ts",
   "keywords": [
     "javascript",
     "node",

@@ -12,9 +12,6 @@ const copySync = require('./src/copySync')
 const move = require('./src/move')
 const moveSync = require('./src/moveSync')
 
-/**
- * Manage your files and folders quickly and easily.
- */
 module.exports = {
   write,
   read,
