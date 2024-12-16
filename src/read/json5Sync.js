@@ -3,7 +3,7 @@ const regex = /("([^"\\]|\\.)*"|'([^'\\]|\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/g
 
 module.exports = function (filePath) {
   try {
-    let content = fileSync(filePath)
+    let content = fileSync(filePath, 'utf-8')
     if (content.charCodeAt(0) === 0xfeff) {
       content = content.slice(1)
     }
@@ -19,5 +19,6 @@ module.exports = function (filePath) {
   } catch (error) {
     console.log('File Path:', filePath)
     console.log(error)
+    process.exit(1)
   }
 }
