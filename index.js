@@ -1,4 +1,4 @@
-const get = require('./src/get')
+const { Search, SearchSync } = require('./src/search')
 const { Write, WriteSync } = require('./src/write')
 const { Read, ReadSync } = require('./src/read')
 const remove = require('./src/remove')
@@ -17,7 +17,8 @@ module.exports = {
   WriteSync,
   Read,
   ReadSync,
-  get,
+  Search,
+  SearchSync,
   remove,
   removeSync,
   removeExists,
