@@ -1,8 +1,22 @@
-const fs = require('fs').promises
+const fs = require('fs')
+const fsPromises = require('fs').promises
 
-module.exports = async function (pathFile, encoding) {
+function getEncoding(encoding) {
   if (typeof encoding === 'string') {
-    return await fs.readFile(pathFile, encoding)
+    return encoding
   }
-  return await fs.readFile(pathFile)
+  return undefined
+}
+
+async function file(pathFile, options) {
+  return await fsPromises.readFile(pathFile, getEncoding(options?.encoding))
+}
+
+function fileSync(pathFile, options) {
+  return fs.readFileSync(pathFile, getEncoding(options?.encoding))
+}
+
+module.exports = {
+  file,
+  fileSync
 }

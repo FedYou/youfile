@@ -1,15 +1,17 @@
-const file = require('./file')
-const fileSync = require('./fileSync')
-const json = require('./json')
-const jsonSync = require('./jsonSync')
-const json5 = require('./json5')
-const json5Sync = require('./json5Sync')
+const { file, fileSync } = require('./file')
+const { json, jsonSync } = require('./json')
+
+const Read = {
+  file: file,
+  json: json
+}
+
+const ReadSync = {
+  file: fileSync,
+  json: jsonSync
+}
 
 module.exports = {
-  file,
-  fileSync,
-  json,
-  jsonSync,
-  json5,
-  json5Sync
+  Read,
+  ReadSync
 }
