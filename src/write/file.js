@@ -1,14 +1,28 @@
-const fs = require('fs').promises
+const fs = require('fs')
+const fsPromises = require('fs').promises
 const path = require('path')
-const dir = require('./dir')
+const { dir, dirSync } = require('./dir')
 
-module.exports = async function (filePath, data = '', encoding) {
-  await dir(path.dirname(filePath))
-
+function getEncoding(encoding) {
   if (typeof encoding === 'string') {
-    await fs.writeFile(filePath, data, encoding)
-    return
+    return encoding
   }
+  return undefined
+}
 
-  await fs.writeFile(filePath, data)
+async function file(filePath, data, options) {
+  await dir(path.dirname(filePath), { recursive: true })
+
+  await fsPromises.writeFile(filePath, data, getEncoding(options?.encoding))
+}
+
+function fileSync(filePath, data, options) {
+  dirSync(path.dirname(filePath), { recursive: true })
+
+  fs.writeFileSync(filePath, data, getEncoding(options?.encoding))
+}
+
+module.exports = {
+  file,
+  fileSync
 }

@@ -1,5 +1,5 @@
 const get = require('./src/get')
-const write = require('./src/write')
+const { Write, WriteSync } = require('./src/write')
 const { Read, ReadSync } = require('./src/read')
 const remove = require('./src/remove')
 const removeSync = require('./src/removeSync')
@@ -13,7 +13,8 @@ const move = require('./src/move')
 const moveSync = require('./src/moveSync')
 
 module.exports = {
-  write,
+  Write,
+  WriteSync,
   Read,
   ReadSync,
   get,

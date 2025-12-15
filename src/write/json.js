@@ -1,12 +1,32 @@
-const file = require('./file')
+const { file, fileSync } = require('./file')
 
-module.exports = async function (filePath, data = {}, spaces = 0) {
-  if (typeof spaces !== 'number') {
-    throw new Error('The spaces not is number type')
+function validOptions(options) {
+  if (options?.spaces && typeof options.spaces !== 'number') {
+    throw new Error('Spaces not is number type')
   }
-  if (typeof data !== 'object') {
-    throw new Error('The data not is object type')
-  }
+}
 
-  await file(filePath, JSON.stringify(data, null, spaces), 'utf-8')
+function validData(data) {
+  if (typeof data !== 'object' && data !== null) {
+    throw new Error('Data not is object type')
+  }
+}
+
+async function json(filePath, data = {}, options) {
+  validOptions(options)
+  validData(data)
+
+  await file(filePath, JSON.stringify(data, null, options?.spaces ?? 0), 'utf-8')
+}
+
+function jsonSync(filePath, data = {}, options) {
+  validOptions(options)
+  validData(data)
+
+  fileSync(filePath, JSON.stringify(data, null, options?.spaces ?? 0), 'utf-8')
+}
+
+module.exports = {
+  json,
+  jsonSync
 }
