@@ -1,6 +1,7 @@
 const { Search, SearchSync } = require('./src/search')
 const { Write, WriteSync } = require('./src/write')
 const { Read, ReadSync } = require('./src/read')
+const { Sha256, Sha256Sync } = require('./src/sha256')
 const remove = require('./src/remove')
 const removeSync = require('./src/removeSync')
 const removeExists = require('./src/removeExists')
@@ -19,6 +20,8 @@ module.exports = {
   ReadSync,
   Search,
   SearchSync,
+  Sha256,
+  Sha256Sync,
   remove,
   removeSync,
   removeExists,
