@@ -1,16 +1,41 @@
-const fs = require('fs').promises
+const fs = require('fs')
+const fsPromises = require('fs').promises
 const path = require('path')
-const dir = require('./write/dir')
+const { dir, dirSync } = require('./write/dir')
 
-module.exports = async function (pathName, dest) {
+async function copy(pathName, dest) {
   await dir(path.dirname(dest))
 
-  const stat = await fs.stat(pathName)
+  const stat = await fsPromises.stat(pathName)
+
   if (stat.isDirectory()) {
-    await fs.cp(pathName, dest, { recursive: true })
-  } else if (stat.isFile()) {
-    await fs.copyFile(pathName, dest)
-  } else {
-    throw new Error('The path is not a file or directory')
+    await fsPromises.cp(pathName, dest, { recursive: true })
+    return
   }
+
+  if (stat.isFile()) {
+    await fsPromises.copyFile(pathName, dest)
+    return
+  }
+
+  throw new Error('The path is not a file or directory')
 }
+
+function copySync(pathName, dest) {
+  dirSync(path.dirname(dest))
+
+  const stat = fs.statSync(pathName)
+
+  if (stat.isDirectory()) {
+    fs.cpSync(pathName, dest, { recursive: true })
+    return
+  }
+
+  if (stat.isFile()) {
+    fs.copyFileSync(pathName, dest)
+    return
+  }
+  throw new Error('The path is not a file or directory')
+}
+
+module.exports = { copy, copySync }

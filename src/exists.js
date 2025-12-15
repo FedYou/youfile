@@ -1,9 +1,22 @@
-const fs = require('fs').promises
+const fs = require('fs')
+const fsPromises = require('fs').promises
 
-module.exports = (path) => {
+function exists(path) {
   return new Promise((resolve, reject) => {
-    fs.access(path)
+    fsPromises
+      .access(path)
       .then(() => resolve(true))
       .catch(() => resolve(false))
   })
 }
+
+function existsSync(path) {
+  try {
+    fs.accessSync(path)
+    return true
+  } catch {
+    return false
+  }
+}
+
+module.exports = { exists, existsSync }
