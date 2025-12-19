@@ -4,8 +4,6 @@ Manage your files and folders quickly and easily.
 
 > When doing `write`, `copy`, `move` if the directory does not exist it will be created automatically.
 
-> All functions have their own version promises as well as synchronization.
-
 ## Installation
 
 ### Module
@@ -20,154 +18,148 @@ import youfile from 'youfile'
 const youfile = require('youfile')
 ```
 
-## write
+## Methods Async
 
-### file
+### `Write.file(path, data, options?): Promise<void>`
 
-You can create files with `objects` as well as with other data such as `fs.writeFile`.
+Write a file asynchronously.
 
-```js
-youfile.write.file(path, 'data')
-youfile.write.file(path, 'data', 'utf-8') // You can also add the encoding of the file in the format that will be created, (this is optional)
-```
+- `path: string` - File path.
+- `data: any` - File contents.
+- `options?: { encoding }` - File options.
+  - `encoding?: string` - File encoding.
 
-With `objects`:
+### `Write.dir(path, options?): Promise<void>`
 
-```js
-youfile.write.json(path, { data: true })
-```
+Write a directory asynchronously.
 
-You can also define the amount of formatting spaces of the JSON file, default is 0.
+- `path: string` - Directory path.
+- `options?: { recursive }` - Directory options.
+  - `recursive?: boolean` - Create all parent directories if they don't exist.
 
-```js
-youfile.write.json(path, { data: true }, 4)
-```
+### `Write.json(path, data, options?): Promise<void>`
 
-### dir
+Write a json file with objects asynchronously.
 
-> If when creating the folder the directory does not exist it will be created automatically.
+- `path: string` - File path.
+- `data: object` - File contents.
+- `options?: { spaces }` - File options.
+  - `spaces?: number` - Number of formatting spaces in the json file, default is 0.
 
-```js
-youfile.write.dir(path)
-```
+### `Read.file(path, options?): Promise<Buffer | string>`
 
-## Read
+Returns the contents of the file asynchronously.
 
-Returns the contents of the file as an `fs.readFile` :
+- `path: string` - File path.
+- `options?: { encoding }` - File options.
+  - `encoding?: string` - File encoding.
 
-```js
-youfile.read.file(path)
-youfile.read.file(path, 'utf-8') // You can also add the encoding of the file in the format it will retranslate, (this is optional)
-```
+### `Read.json(path, options?): Promise<object>`
 
-Returns the contents of the file in an `object`:
+Returns the contents of the file json format as a object asynchronously.
 
-```js
-youfile.read.json(path)
-```
+- `path: string` - File path.
+- `options?: { comments }` - File options.
+  - `comments?: boolean` - Read the json file if it has comments.
 
-You can also read JSON files with comments:
+### `Search.files(path, options?): Promise<string[]>`
 
-```js
-youfile.read.json5(path)
-```
+Return all paths of files in a directory asynchronously.
 
-## Get
+- `path: string` - Directory path.
+- `options?: { recursive, extname }` - Directory options.
+  - `recursive?: boolean` - Read all internal directories
+  - `extname?: string` - File extension to search.
 
-### sha256
+### `Search.dirs(path, options?): Promise<string[]>`
 
-Returns the sha256 of the file in a `string`.
+Return all paths of folders in a directory asynchronously.
 
-```js
-youfile.get.sha256(path)
-```
+- `path: string` - Directory path.
+- `options?: { recursive }` - Directory options.
+  - `recursive?: boolean` - Read all internal directories
 
-### folders
+### `Sha256.byFile(path): Promise<string>`
 
-Return an `array` with all folders that are in the same directory.
+Calculates the SHA-256 hash of a file asynchronously.
 
-```js
-youfile.get.folders(path)
-```
+- `path: string` - The file path.
 
-### files
+### `Sha256.byString(string): Promise<string>`
 
-Return an `array` with all the files that are in the same directory.
+Calculates the SHA-256 hash of a string asynchronously.
 
-```js
-youfile.get.files(path)
-```
+- `string: string` - The string.
 
-### extFiles
+## Methods Sync
 
-Returns an `array` with all the files with a specified extension that are in the same directory
+### `WriteSync.file(path, data, options?): void`
 
-```js
-youfile.get.extFiles(path, '.ext')
-```
+Write a file synchronously.
 
-### allFolders
+- `path: string` - File path.
+- `data: any` - File contents.
+- `options?: { encoding }` - File options.
+  - `encoding?: string` - File encoding.
 
-Returns an `array` with all folders contained in the directory
+### `WriteSync.dir(path, options?): void`
 
-```js
-youfile.get.allFolders(path)
-```
+Write a directory synchronously.
 
-### allFiles
+- `path: string` - Directory path.
+- `options?: { recursive }` - Directory options.
+  - `recursive?: boolean` - Create all parent directories if they don't exist.
 
-Returns an `array` with all the files contained in the a directory.
+### `WriteSync.json(path, data, options?): void`
 
-```js
-youfile.get.allFiles(path)
-```
+Write a json file with objects synchronously.
 
-### allExtFiles
+- `path: string` - File path.
+- `data: object` - File contents.
+- `options?: { spaces }` - File options.
+  - `spaces?: number` - Number of formatting spaces in the json file, default is 0.
 
-Returns an `array` with all the files with a specified extension contained in the directory
+### `ReadSync.file(path, options?): Buffer | string`
 
-```js
-youfile.get.allExtFiles(path, '.ext')
-```
+Returns the contents of the file synchronously.
 
-## Other functions
+- `path: string` - File path.
+- `options?: { encoding }` - File options.
+  - `encoding?: string` - File encoding.
 
-### exists
+### `ReadSync.json(path, options?): object`
 
-Returns a `boolean` if the file or directory exists
+Returns the contents of the file json format as a object synchronously.
 
-```js
-youfile.exists(path)
-```
+- `path: string` - File path.
+- `options?: { comments }` - File options.
+  - `comments?: boolean` - Read the json file if it has comments.
 
-### remove
+### `SearchSync.files(path, options?): string[]`
 
-Removes files and directories
+Return all paths of files in a directory synchronously.
 
-```js
-youfile.remove(path)
-```
+- `path: string` - Directory path.
+- `options?: { recursive, extname }` - Directory options.
+  - `recursive?: boolean` - Read all internal directories
+  - `extname?: string` - File extension to search.
 
-### removeExists
+### `SearchSync.dirs(path, options?): string[]`
 
-Remove files and directories if they exist
+Return all paths of folders in a directory synchronously.
 
-```js
-youfile.removeExists(path)
-```
+- `path: string` - Directory path.
+- `options?: { recursive }` - Directory options.
+  - `recursive?: boolean` - Read all internal directories
 
-### copy
+### `Sha256Sync.byFile(path): string`
 
-Copy files and directories
+Calculates the SHA-256 hash of a file synchronously.
 
-```js
-youfile.copy(path, dest)
-```
+- `path: string` - The file path.
 
-### move
+### `Sha256Sync.byString(string): string`
 
-I move files or directories
+Calculates the SHA-256 hash of a string synchronously.
 
-```js
-youfile.move(path, dest)
-```
+- `string: string` - The string.
