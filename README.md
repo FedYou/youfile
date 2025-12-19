@@ -46,6 +46,8 @@ Write a json file with objects asynchronously.
 - `options?: { spaces }` - File options.
   - `spaces?: number` - Number of formatting spaces in the json file, default is 0.
 
+---
+
 ### `Read.file(path, options?): Promise<Buffer | string>`
 
 Returns the contents of the file asynchronously.
@@ -61,6 +63,8 @@ Returns the contents of the file json format as a object asynchronously.
 - `path: string` - File path.
 - `options?: { comments }` - File options.
   - `comments?: boolean` - Read the json file if it has comments.
+
+---
 
 ### `Search.files(path, options?): Promise<string[]>`
 
@@ -78,6 +82,8 @@ Return all paths of folders in a directory asynchronously.
 - `path: string` - Directory path.
 - `options?: { recursive }` - Directory options.
   - `recursive?: boolean` - Read all internal directories
+
+---
 
 ### `Sha256.byFile(path): Promise<string>`
 
@@ -119,6 +125,8 @@ Write a json file with objects synchronously.
 - `options?: { spaces }` - File options.
   - `spaces?: number` - Number of formatting spaces in the json file, default is 0.
 
+---
+
 ### `ReadSync.file(path, options?): Buffer | string`
 
 Returns the contents of the file synchronously.
@@ -134,6 +142,8 @@ Returns the contents of the file json format as a object synchronously.
 - `path: string` - File path.
 - `options?: { comments }` - File options.
   - `comments?: boolean` - Read the json file if it has comments.
+
+---
 
 ### `SearchSync.files(path, options?): string[]`
 
@@ -157,6 +167,8 @@ Return all paths of folders in a directory synchronously.
 Calculates the SHA-256 hash of a file synchronously.
 
 - `path: string` - The file path.
+
+---
 
 ### `Sha256Sync.byString(string): string`
 
