@@ -1,6 +1,6 @@
 # YouFile
 
-Manage your files and folders quickly and easily.
+Manage your files and directories quickly and easily.
 
 > When doing `write`, `copy`, `move` if the directory does not exist it will be created automatically.
 
