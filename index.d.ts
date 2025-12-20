@@ -128,7 +128,7 @@ interface Search {
    * @param options.recursive - Read all internal directories
    * @param options.extname - File extension to search.
    */
-  files(path: string, options?: { recursive?: boolean; extname?: string }): Promise<string[]>
+  files(path: string, options?: { recursive?: boolean; extname?: string | string[] }): Promise<string[]>
 
   /**
    * Return all paths of folders in a directory asynchronously.
@@ -149,7 +149,7 @@ interface SearchSync {
    * @param options.recursive - Read all internal directories
    * @param options.extname - File extension to search.
    */
-  files(path: string, options?: { recursive?: boolean; extname?: string }): string[]
+  files(path: string, options?: { recursive?: boolean; extname?: string | string[] }): string[]
 
   /**
    * Return all paths of folders in a directory synchronously.

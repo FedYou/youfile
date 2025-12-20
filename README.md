@@ -73,7 +73,7 @@ Return all paths of files in a directory asynchronously.
 - `path: string` - Directory path.
 - `options?: { recursive, extname }` - Directory options.
   - `recursive?: boolean` - Read all internal directories
-  - `extname?: string` - File extension to search.
+  - `extname?: string | string[]` - File extension to search.
 
 ### `Search.dirs(path, options?): Promise<string[]>`
 
@@ -152,7 +152,7 @@ Return all paths of files in a directory synchronously.
 - `path: string` - Directory path.
 - `options?: { recursive, extname }` - Directory options.
   - `recursive?: boolean` - Read all internal directories
-  - `extname?: string` - File extension to search.
+  - `extname?: string | string[]` - File extension to search.
 
 ### `SearchSync.dirs(path, options?): string[]`
 
