@@ -4,7 +4,7 @@ const path = require('path')
 const { dir, dirSync } = require('./write/dir')
 
 async function copy(pathName, dest) {
-  await dir(path.dirname(dest))
+  await dir(path.dirname(dest), { recursive: true })
 
   const stat = await fsPromises.stat(pathName)
 
@@ -22,7 +22,7 @@ async function copy(pathName, dest) {
 }
 
 function copySync(pathName, dest) {
-  dirSync(path.dirname(dest))
+  dirSync(path.dirname(dest), { recursive: true })
 
   const stat = fs.statSync(pathName)
 
