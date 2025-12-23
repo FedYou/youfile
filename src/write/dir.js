@@ -30,7 +30,7 @@ async function dir(_path, options) {
   }
 }
 
-function dirSync(_path) {
+function dirSync(_path, options) {
   if (options?.recursive !== true) {
     fs.mkdirSync(_path, { mode })
     return
