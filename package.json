@@ -1,6 +1,6 @@
 {
   "name": "youfile",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Manage your files and directories quickly and easily",
   "homepage": "https://github.com/FedYou/youfile",
   "main": "index.js",
