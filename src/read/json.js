@@ -1,9 +1,13 @@
 const { file, fileSync } = require('./file')
 const regex = /("([^"\\]|\\.)*"|'([^'\\]|\\.)*'|\/\/.*|\/\*[\s\S]*?\*\/)/g
 
+const readOPtiions = {
+  encoding: 'utf-8'
+}
+
 async function json5(filePath) {
   try {
-    let content = await file(filePath, 'utf-8')
+    let content = await file(filePath, readOPtiions)
     if (content.charCodeAt(0) === 0xfeff) {
       content = content.slice(1)
     }
@@ -25,7 +29,7 @@ async function json5(filePath) {
 
 function json5Sync(filePath) {
   try {
-    let content = fileSync(filePath, 'utf-8')
+    let content = fileSync(filePath, readOPtiions)
     if (content.charCodeAt(0) === 0xfeff) {
       content = content.slice(1)
     }
@@ -49,14 +53,14 @@ async function json(pathFile, options) {
   if (options?.comments === true) {
     return await json5(pathFile)
   }
-  return JSON.parse(await file(pathFile, 'utf-8'))
+  return JSON.parse(await file(pathFile, readOPtiions))
 }
 
 function jsonSync(pathFile, options) {
   if (options?.comments === true) {
     return json5Sync(pathFile)
   }
-  return JSON.parse(fileSync(pathFile, 'utf-8'))
+  return JSON.parse(fileSync(pathFile, readOPtiions))
 }
 
 module.exports = {
